@@ -1,0 +1,22 @@
+{
+	"name": "EasyAR.Sense.Sample.HuaweiAREngine",
+	"references": [
+		"EasyAR.Sense",
+		"Huawei.AREngine"
+	],
+	"includePlatforms": [],
+	"excludePlatforms": [],
+	"allowUnsafeCode": false,
+	"overrideReferences": false,
+	"precompiledReferences": [],
+	"autoReferenced": true,
+	"defineConstraints": [],
+	"versionDefines": [
+		{
+			"name": "com.huawei.arengine",
+			"expression": "2.11.0",
+			"define": "EASYAR_HWARENGINE_ENABLE"
+		}
+	],
+	"noEngineReferences": false
+}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7841987150a796e43986c1015cb857a2, type: 3}
+  m_Name: FirstFurnitureSetting
+  m_EditorClassIdentifier: 
+  objects:
+  - id: 0
+    objectModel: {fileID: 5412947398142101004, guid: 8fca0ecf413fa4641900977f56839187,
+      type: 3}
+  - id: 1
+    objectModel: {fileID: 1314043901862078527, guid: 390292a84dc9b8a43b251730255b3f57,
+      type: 3}
+  - id: 2
+    objectModel: {fileID: 5176441359048680554, guid: fc04b032dc7916845b04bfc6a87b9b4a,
+      type: 3}
+  - id: 3
+    objectModel: {fileID: 7754124619926737367, guid: 90a6669abd46fe7458f71a1b3ff2bb3e,
+      type: 3}
+  - id: 4
+    objectModel: {fileID: 5430929903956058357, guid: 728952a2c8717594091126c73994d96d,
+      type: 3}
+  - id: 5
+    objectModel: {fileID: 6600944986278329982, guid: 9ef4ff8ceed9ae844a1be3d273d5faff,
+      type: 3}

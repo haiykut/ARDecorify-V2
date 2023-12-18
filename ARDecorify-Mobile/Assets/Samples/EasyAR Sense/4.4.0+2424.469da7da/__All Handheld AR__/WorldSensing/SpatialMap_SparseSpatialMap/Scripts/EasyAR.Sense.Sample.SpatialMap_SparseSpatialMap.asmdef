@@ -1,0 +1,23 @@
+{
+	"name": "EasyAR.Sense.Sample.SpatialMap_SparseSpatialMap",
+	"references": [
+		"EasyAR.Sense",
+		"Unity.RenderPipelines.Core.Runtime",
+		"Unity.RenderPipelines.Universal.Runtime"
+	],
+	"includePlatforms": [],
+	"excludePlatforms": [],
+	"allowUnsafeCode": false,
+	"overrideReferences": false,
+	"precompiledReferences": [],
+	"autoReferenced": true,
+	"defineConstraints": [],
+	"versionDefines": [
+		{
+			"name": "com.unity.render-pipelines.universal",
+			"expression": "7.0.0",
+			"define": "EASYAR_URP_ENABLE"
+		}
+	],
+	"noEngineReferences": false
+}
