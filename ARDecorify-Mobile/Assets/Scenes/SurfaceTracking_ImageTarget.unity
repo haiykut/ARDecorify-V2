@@ -10537,7 +10537,7 @@ MonoBehaviour:
   SourceType: 0
   ImageFileSource:
     PathType: 1
-    Path: ref.jpg
+    Path: namecard.jpg
     Name: ref
     Scale: 0.09
   TargetDataFileSource:

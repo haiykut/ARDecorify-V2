@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aaa1ae868b0140b6456db09120440, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  LicenseKey: EASYARKEYHERE
+  LicenseKey: 
   InitializeOnStartup: 1
   Permissions:
     CameraDevice: 1
