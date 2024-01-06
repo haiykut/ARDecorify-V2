@@ -1,4 +1,5 @@
 
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -6,11 +7,13 @@ public class Character : MonoBehaviour
     private Vector3 velocity;
     private Vector3 playerMovementInput;
     private Vector2 playerMouseInput;
+    private float scrollInput;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private Transform camera;
+    [SerializeField] private Camera camera;
     [SerializeField] private float speed;
     private float currentSpeed;
     [SerializeField] private float sensivity;
+    [SerializeField] private float scrollSensivity;
     [SerializeField] private float gravity = -9.81f;
     float xRot;
     [SerializeField] Texture2D cursorRotate;
@@ -19,12 +22,14 @@ public class Character : MonoBehaviour
     {
         Cursor.SetCursor(cursorNormal, Vector2.zero, CursorMode.Auto);
         currentSpeed = speed;
+        camera = Camera.main;
     }
     private void Update()
     {
 
         Inputs();
         Move();
+        Zoom();
         if (Input.GetMouseButton(1))
         {
             Rotate();
@@ -36,11 +41,20 @@ public class Character : MonoBehaviour
         }
 
     }
+   
+    private void Zoom()
+    {
+        float fov = camera.fieldOfView;
+        fov -= scrollInput * scrollSensivity * Time.deltaTime;
+        fov = Mathf.Clamp(fov, 50, 75);
+        camera.fieldOfView = fov;
+    }
 
     private void Inputs()
     {
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         playerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        scrollInput = Input.GetAxis("Mouse ScrollWheel");
     }
     private void Move()
     {
@@ -67,6 +81,6 @@ public class Character : MonoBehaviour
     {
         xRot -= playerMouseInput.y * sensivity;
         transform.Rotate(0, playerMouseInput.x * sensivity, 0);
-        camera.localRotation = Quaternion.Euler(xRot, 0, 0);
+        camera.transform.localRotation = Quaternion.Euler(xRot, 0, 0);
     }
 }
