@@ -31,7 +31,7 @@ public class SceneController : MonoBehaviour
     bool generalControl;
     GameObject[] sceneFurnitureArr;
     List<GameObject> sceneFurnitureList;
-    public List<Furniture> confirmedFurniture = new List<Furniture>();
+    public List<Furniture> confirmedFurnituresList = new List<Furniture>();
     public static SceneController instance;
     [SerializeField] HttpRequestController httpReqController;
     [SerializeField] List<GameObject> allUiElements;
@@ -40,22 +40,32 @@ public class SceneController : MonoBehaviour
     {
         instance = this;
         zeroPoint.gameObject.SetActive(true);
+      
     }
 
     public void StartApp()
     {
-        for(int i = 0; i < allUiElements.Count; i++)
+        for (int i = 0; i < allUiElements.Count; i++)
         {
             allUiElements[i].SetActive(true);
         }
         arGuide.SetActive(false);
+        /*
+        //TODO: Dev
+        Furniture f = new Furniture();
+        f.id = 3;
+        f.transform = transform.position;
+        confirmedFurnituresList.Add(f);
+        Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurnituresList };
+        httpReqController.JsonGenerator(confirmedFurnitures);
+        */
     }
 
     private void Start()
     {
         resetButton.interactable = false;
         httpReqController = (HttpRequestController)FindObjectOfType(typeof(HttpRequestController));
-        for(int i = 0; i<furnituresPanelChild.transform.childCount; i++)
+        for (int i = 0; i < furnituresPanelChild.transform.childCount; i++)
         {
             int id = i;
             Debug.Log(id);
@@ -143,12 +153,6 @@ public class SceneController : MonoBehaviour
         setButton.interactable = false;
         status.gameObject.SetActive(false);
         zeroPoint.localPosition = new Vector3(imageTracking.transform.position.x, 0, imageTracking.transform.position.z);
-        Debug.Log("ig pos: " + imageTracking.transform.position);
-        Debug.Log("ig localpos: "+imageTracking.transform.localPosition);
-        Debug.Log("zero pos: "+zeroPoint.transform.position);
-        Debug.Log("zerolocalpos: "+ zeroPoint.transform.localPosition);
-
-        
         zeroPoint.localRotation = imageTracking.transform.localRotation;
         createObjButton.interactable = true;
         status.gameObject.SetActive(false);
@@ -168,18 +172,18 @@ public class SceneController : MonoBehaviour
     public void ConfirmScene()
     {
         sceneFurnitureArr = GameObject.FindGameObjectsWithTag("Furniture"); // Sahnedeki tum esyalarin arrayi
-      
-        for(int i = 0; i< sceneFurnitureArr.Length; i++)
+
+        for (int i = 0; i < sceneFurnitureArr.Length; i++)
         {
-            Furniture o = new Furniture { id = sceneFurnitureArr[i].GetComponent<FurnitureScript>().id, transf = sceneFurnitureArr[i].transform.position }; // Tekil esyalarin her birisi ayri
-                                                                                                                                                            // birer nesne olarak olusturuluyor
-                                                                                                                                                            // FurnitueScript bir scriptableobject
-            confirmedFurniture.Add(o); // Olusturulan her nesne bir listeye ekleniyor
+            Furniture o = new Furniture { id = sceneFurnitureArr[i].GetComponent<FurnitureScript>().id, transform = sceneFurnitureArr[i].transform.position }; // Tekil esyalarin her birisi ayri
+                                                                                                                                                               // birer nesne olarak olusturuluyor
+                                                                                                                                                               // FurnitueScript bir scriptableobject
+            confirmedFurnituresList.Add(o); // Olusturulan her nesne bir listeye ekleniyor
         }
-        Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurniture }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
+        Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurnituresList }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
                                                                                              // esyalarin listesi esitleniyor.
                                                                                              // Json formatina cevirebilmek icin class kullanmak zorunlu.
-      
+
         httpReqController.JsonGenerator(confirmedFurnitures); //Web kismina post istegi ile beraber json formatinda furnitures classi (tekil esyalarin listesinin bulundugu class) gonderiyor.
     }
     public void FinishApp()
@@ -205,15 +209,15 @@ public class SceneController : MonoBehaviour
         singleObject.id = objectSetting.objects[index].id;
         transform.SetParent(zeroPoint.transform);
         transform.localPosition = new Vector3(0, 0, 0f);
-        transform.localEulerAngles = new Vector3(180, 0, 0f);   
+        transform.localEulerAngles = new Vector3(180, 0, 0f);
         furnituresPanel.SetActive(false);
     }
 
     [System.Serializable]
-    public class Furniture
+    public struct Furniture
     {
         public int id;
-        public Vector3 transf;
+        public Vector3 transform;
     }
     [System.Serializable]
     public class Furnitures
@@ -221,11 +225,4 @@ public class SceneController : MonoBehaviour
         public List<Furniture> furnitures;
     }
 
-    [System.Serializable]
-    public class exampleClass
-    {
-        public List<int> id;
-        
-    }
-    
 }

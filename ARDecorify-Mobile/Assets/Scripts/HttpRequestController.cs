@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class HttpRequestController : MonoBehaviour
 {
-    [SerializeField] JsonToClass jsonToClass;
     [SerializeField] InputField usernameArea;
     [SerializeField] InputField passwordArea;
     [SerializeField] string authUrl;
@@ -23,6 +22,15 @@ public class HttpRequestController : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        /*
+        //TODO: Dev
+        UserDetails ud = new UserDetails();
+        ud.username = "deneme";
+        ud.password = "Password";
+        User u = new User();
+        u.user = ud;
+        Debug.Log(JsonUtility.ToJson(u,true));
+        */
     }
     public void SubmitMethod()
     {
@@ -46,8 +54,8 @@ public class HttpRequestController : MonoBehaviour
 
     void JsonGenerator(string username, string password)
     {
-        JsonToClass jtc = new JsonToClass { username = username, password = password };
-        User user = new User { user = jtc};
+        UserDetails userDetails = new UserDetails{ username = username, password = password };
+        User user = new User { user = userDetails };
         StartCoroutine(AuthPost(authUrl, JsonUtility.ToJson(user)));
     }
     public void JsonGenerator(SceneController.Furnitures furnitures)
@@ -139,7 +147,7 @@ public class HttpRequestController : MonoBehaviour
     }
 }
 [System.Serializable]
-public class JsonToClass
+public struct UserDetails
 {
     public string username;
     public string password;
@@ -148,5 +156,5 @@ public class JsonToClass
 [System.Serializable]
 public class User
 {
-    public JsonToClass user;
+    public UserDetails user;
 }
