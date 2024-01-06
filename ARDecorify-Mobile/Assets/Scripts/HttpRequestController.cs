@@ -151,7 +151,7 @@ public struct UserDetails
 {
     public string username;
     public string password;
-
+    
 }
 [System.Serializable]
 public class User

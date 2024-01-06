@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class SceneManager : MonoBehaviour
@@ -11,6 +10,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField] Transform room;
     [SerializeField] Transform zeroPoint;
     public static SceneManager instance;
+    [SerializeField] Character character;
     private void Awake()
     {
         instance = this;
@@ -29,23 +29,24 @@ public class SceneManager : MonoBehaviour
         for(int i = 0; i< input.furnitures.Length; i++)
         {
 
-            if (borderSizeZ < Mathf.Abs(input.furnitures[i].transf.z))
+            if (borderSizeZ < Mathf.Abs(input.furnitures[i].transform.z))
             {
-                borderSizeZ = Mathf.Abs(input.furnitures[i].transf.z);
+                borderSizeZ = Mathf.Abs(input.furnitures[i].transform.z);
             }
-            if (borderSizeX < Mathf.Abs(input.furnitures[i].transf.x))
+            if (borderSizeX < Mathf.Abs(input.furnitures[i].transform.x))
             {
-                borderSizeX = Mathf.Abs(input.furnitures[i].transf.x);
+                borderSizeX = Mathf.Abs(input.furnitures[i].transform.x);
             }
         }
         Debug.Log(borderSizeX.ToString() + borderSizeZ.ToString());
-        return new Vector3(borderSizeX + 2, 0.1f, borderSizeZ + 2);
+        return new Vector3(borderSizeX + 3, 0.1f, borderSizeZ + 3);
     }
     void SetTheScene(Vector3 borderSize)
     {
         room.localScale = borderSize;
         zeroPoint.SetParent(null);
         zeroPoint.localScale = Vector3.one;
+        character.transform.SetLocalPositionAndRotation(zeroPoint.localPosition + new Vector3(0,0.75f,0), zeroPoint.localRotation);
     }
 
     void CreateFurnitures()
@@ -55,14 +56,14 @@ public class SceneManager : MonoBehaviour
             int id = input.furnitures[i].id;
             Transform furniture = Instantiate(furnituresSettings.objects[id].objectModel).transform;
             furniture.localEulerAngles = new Vector3(-90, 0, 0);
-            furniture.localPosition = new Vector3(input.furnitures[i].transf.x / 2, 0.05f, input.furnitures[i].transf.z / 2);
+            furniture.localPosition = new Vector3(input.furnitures[i].transform.x / 2, 0.05f, input.furnitures[i].transform.z / 2);
         }
     }
     [System.Serializable]
     public struct Furniture
     {
         public int id;
-        public Vector3 transf;
+        public Vector3 transform;
     }
     [System.Serializable]
     public struct Furnitures

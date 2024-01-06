@@ -224,5 +224,4 @@ public class SceneController : MonoBehaviour
     {
         public List<Furniture> furnitures;
     }
-
 }
