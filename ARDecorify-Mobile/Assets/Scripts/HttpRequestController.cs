@@ -22,7 +22,7 @@ public class HttpRequestController : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        /*
+        
         //TODO: Dev
         UserDetails ud = new UserDetails();
         ud.username = "deneme";
@@ -30,7 +30,7 @@ public class HttpRequestController : MonoBehaviour
         User u = new User();
         u.user = ud;
         Debug.Log(JsonUtility.ToJson(u,true));
-        */
+        
     }
     public void SubmitMethod()
     {
@@ -154,7 +154,7 @@ public struct UserDetails
     
 }
 [System.Serializable]
-public class User
+public struct User
 {
     public UserDetails user;
 }

@@ -50,15 +50,16 @@ public class SceneController : MonoBehaviour
             allUiElements[i].SetActive(true);
         }
         arGuide.SetActive(false);
-        /*
+        
         //TODO: Dev
         Furniture f = new Furniture();
         f.id = 3;
-        f.transform = transform.position;
+        f.position = transform.localPosition;
+        f.rotation = transform.localEulerAngles;
         confirmedFurnituresList.Add(f);
         Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurnituresList };
         httpReqController.JsonGenerator(confirmedFurnitures);
-        */
+        
     }
 
     private void Start()
@@ -175,7 +176,7 @@ public class SceneController : MonoBehaviour
 
         for (int i = 0; i < sceneFurnitureArr.Length; i++)
         {
-            Furniture o = new Furniture { id = sceneFurnitureArr[i].GetComponent<FurnitureScript>().id, transform = sceneFurnitureArr[i].transform.position }; // Tekil esyalarin her birisi ayri
+            Furniture o = new Furniture { id = sceneFurnitureArr[i].GetComponent<FurnitureScript>().id, position = sceneFurnitureArr[i].transform.position, rotation = sceneFurnitureArr[i].transform.localEulerAngles }; // Tekil esyalarin her birisi ayri
                                                                                                                                                                // birer nesne olarak olusturuluyor
                                                                                                                                                                // FurnitueScript bir scriptableobject
             confirmedFurnituresList.Add(o); // Olusturulan her nesne bir listeye ekleniyor
@@ -217,10 +218,11 @@ public class SceneController : MonoBehaviour
     public struct Furniture
     {
         public int id;
-        public Vector3 transform;
+        public Vector3 position;
+        public Vector3 rotation;
     }
     [System.Serializable]
-    public class Furnitures
+    public struct Furnitures
     {
         public List<Furniture> furnitures;
     }
