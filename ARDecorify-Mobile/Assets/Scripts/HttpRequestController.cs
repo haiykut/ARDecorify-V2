@@ -58,11 +58,11 @@ public class HttpRequestController : MonoBehaviour
         User user = new User { user = userDetails };
         StartCoroutine(AuthPost(authUrl, JsonUtility.ToJson(user)));
     }
-    public void JsonGenerator(SceneController.Furnitures furnitures)
+    public void JsonGenerator(SceneController.FurnitureMap furnitureMap)
     {
         //make a post request to server.
-        StartCoroutine(ConfirmPost(confirmUrl, JsonUtility.ToJson(furnitures, true)));
-        Debug.Log(JsonUtility.ToJson(furnitures, true));
+        StartCoroutine(ConfirmPost(confirmUrl, JsonUtility.ToJson(furnitureMap, true)));
+        Debug.Log(JsonUtility.ToJson(furnitureMap, true));
     }
     IEnumerator ConfirmPost(string url, string bodyJsonString)
     {

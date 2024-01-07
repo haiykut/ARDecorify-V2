@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using easyar;
-using System.Security.Cryptography;
 
 public class SceneController : MonoBehaviour
 {
@@ -57,7 +54,7 @@ public class SceneController : MonoBehaviour
         f.position = transform.localPosition;
         f.rotation = transform.localEulerAngles;
         confirmedFurnituresList.Add(f);
-        Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurnituresList };
+        FurnitureMap confirmedFurnitures = new FurnitureMap { furnitures = confirmedFurnituresList };
         httpReqController.JsonGenerator(confirmedFurnitures);
         
     }
@@ -181,7 +178,7 @@ public class SceneController : MonoBehaviour
                                                                                                                                                                // FurnitueScript bir scriptableobject
             confirmedFurnituresList.Add(o); // Olusturulan her nesne bir listeye ekleniyor
         }
-        Furnitures confirmedFurnitures = new Furnitures { furnitures = confirmedFurnituresList }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
+        FurnitureMap confirmedFurnitures = new FurnitureMap { furnitures = confirmedFurnituresList }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
                                                                                              // esyalarin listesi esitleniyor.
                                                                                              // Json formatina cevirebilmek icin class kullanmak zorunlu.
 
@@ -222,7 +219,7 @@ public class SceneController : MonoBehaviour
         public Vector3 rotation;
     }
     [System.Serializable]
-    public struct Furnitures
+    public struct FurnitureMap
     {
         public List<Furniture> furnitures;
     }
