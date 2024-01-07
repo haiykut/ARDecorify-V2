@@ -1,23 +1,23 @@
 
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour
+public class SceneController : MonoBehaviour
 {
-
-    [SerializeField] string json;
-    Furnitures input;
-    [SerializeField] Objects furnituresSettings;
-    [SerializeField] Transform room;
-    [SerializeField] Transform zeroPoint;
-    public static SceneManager instance;
-    [SerializeField] Character character;
+    private TextAsset json;
+    private FurnitureMap input;
+    [SerializeField] private Objects furnituresSettings;
+    [SerializeField] private Transform room;
+    [SerializeField] private Transform zeroPoint;
+    [SerializeField] private Character character;
+    [SerializeField] internal Texture2D cursorRotateTexture;
+    [SerializeField] internal Texture2D cursorNormalTexture;
     private void Awake()
     {
-        instance = this;
+        json = Initializer.instance.json;
     }
     void Start()
     {
-        input = JsonUtility.FromJson<Furnitures>(json);
+        input = JsonUtility.FromJson<FurnitureMap>(json.text);
         SetTheScene(CalculateBorders());
         CreateFurnitures();
         
@@ -38,7 +38,6 @@ public class SceneManager : MonoBehaviour
                 borderSizeX = Mathf.Abs(input.furnitures[i].position.x);
             }
         }
-        Debug.Log(borderSizeX.ToString() + borderSizeZ.ToString());
         return new Vector3(borderSizeX + 3, 0.1f, borderSizeZ + 3);
     }
     void SetTheScene(Vector3 borderSize)
@@ -69,7 +68,7 @@ public class SceneManager : MonoBehaviour
         public Vector3 rotation;
     }
     [System.Serializable]
-    public struct Furnitures
+    public struct FurnitureMap
     {
         public Furniture[] furnitures;
     }

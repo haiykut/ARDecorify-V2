@@ -1,7 +1,4 @@
-
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
 public class Character : MonoBehaviour
 {
     private Vector3 velocity;
@@ -9,37 +6,35 @@ public class Character : MonoBehaviour
     private Vector2 playerMouseInput;
     private float scrollInput;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private Camera camera;
+    private Camera camera;
     [SerializeField] private float speed;
     private float currentSpeed;
     [SerializeField] private float sensivity;
     [SerializeField] private float scrollSensivity;
     [SerializeField] private float gravity = -9.81f;
-    float xRot;
-    [SerializeField] Texture2D cursorRotate;
-    [SerializeField] Texture2D cursorNormal;
+    private float xRot;
+    private SceneController sceneController;
     private void Start()
     {
-        Cursor.SetCursor(cursorNormal, Vector2.zero, CursorMode.Auto);
+        sceneController = FindObjectOfType<SceneController>();
+        Cursor.SetCursor(sceneController.cursorNormalTexture, Vector2.zero, CursorMode.Auto);
         currentSpeed = speed;
         camera = Camera.main;
     }
     private void Update()
     {
-
         Inputs();
         Move();
         Zoom();
         if (Input.GetMouseButton(1))
         {
             Rotate();
-            Cursor.SetCursor(cursorRotate, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(sceneController.cursorRotateTexture, Vector2.zero, CursorMode.Auto);
         }
         else if(Input.GetMouseButtonUp(1))
         {
-            Cursor.SetCursor(cursorNormal, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(sceneController.cursorNormalTexture, Vector2.zero, CursorMode.Auto);
         }
-
     }
    
     private void Zoom()
@@ -49,7 +44,6 @@ public class Character : MonoBehaviour
         fov = Mathf.Clamp(fov, 50, 75);
         camera.fieldOfView = fov;
     }
-
     private void Inputs()
     {
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -58,13 +52,11 @@ public class Character : MonoBehaviour
     }
     private void Move()
     {
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
             currentSpeed = speed * 5f;
         else if (Input.GetKeyUp(KeyCode.LeftShift))
             currentSpeed = speed;
         Vector3 movementVector = transform.TransformDirection(playerMovementInput);
-
         if (characterController.isGrounded)
         {
             velocity.y = -1;
@@ -75,7 +67,6 @@ public class Character : MonoBehaviour
         }
         characterController.Move(movementVector * currentSpeed * Time.deltaTime);
         characterController.Move(velocity * Time.deltaTime);
-    
     }
     private void Rotate()
     {

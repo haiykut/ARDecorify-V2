@@ -759,44 +759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311eebf16df96de41a6ebccc963bdb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: '{     "furnitures": [         {             "id": 0,             "position":
-    {                 "x": 10,                 "y": 0,                 "z": 7            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },          {             "id": 0,             "position":
-    {                 "x": -10,                 "y": 0,                 "z": 7            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },         {             "id": 0,             "position":
-    {                 "x": -10,                 "y": 0,                 "z": -7            
-    },             "rotation": {                 "x": 0,                 "y": -180,                
-    "z": 0             }         },         {             "id": 0,             "position":
-    {                 "x": 10,                 "y": 0,                 "z": -7            
-    },             "rotation": {                 "x": 0,                 "y": -180,                
-    "z": 0             }         },         {             "id": 3,             "position":
-    {                 "x": 0,                 "y": 0,                 "z": 0            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },         {             "id": 1,             "position":
-    {                 "x": 0,                 "y": 0,                 "z": -1            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },         {             "id": 1,             "position":
-    {                 "x": 0,                 "y": 0,                 "z": 1            
-    },             "rotation": {                 "x": 0,                 "y": 180,                
-    "z": 0             }         },         {             "id": 6,             "position":
-    {                 "x": 0,                 "y": 0,                 "z": 10            
-    },             "rotation": {                 "x": 0,                 "y": 180,                
-    "z": 0             }         },         {             "id": 6,             "position":
-    {                 "x": 0,                 "y": 0,                 "z": -10            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },         {             "id": 7,             "position":
-    {                 "x": 11,                 "y": 0,                 "z": 0            
-    },             "rotation": {                 "x": 0,                 "y": 0,                
-    "z": 0             }         },         {             "id": 7,             "position":
-    {                 "x": -11,                 "y": 0,                 "z": 0            
-    },             "rotation": {                 "x": 0,                 "y": -180,                
-    "z": 0             }         }     ] }'
+  json: {fileID: 4900000, guid: 142ea794bd1e6464fb0b4331336d8f42, type: 3}
   furnituresSettings: {fileID: 11400000, guid: d446927c4afa05e4280220947d42c7b2, type: 2}
   room: {fileID: 541290719}
   zeroPoint: {fileID: 398839952}
   character: {fileID: 2067314571}
+  cursorRotateTexture: {fileID: 2800000, guid: 3bf7a9414bd681c4d858ca9c81c35a22, type: 3}
+  cursorNormalTexture: {fileID: 2800000, guid: 2fd2248dbd49a36448a537c2fdc73310, type: 3}
 --- !u!1 &1107158286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,13 +1116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2067314572}
-  camera: {fileID: 963194227}
   speed: 3
   sensivity: 4
   scrollSensivity: 8000
   gravity: -9.81
-  cursorRotate: {fileID: 2800000, guid: 3bf7a9414bd681c4d858ca9c81c35a22, type: 3}
-  cursorNormal: {fileID: 2800000, guid: 2fd2248dbd49a36448a537c2fdc73310, type: 3}
 --- !u!143 &2067314572
 CharacterController:
   m_ObjectHideFlags: 0
