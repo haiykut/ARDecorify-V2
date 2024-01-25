@@ -1,5 +1,4 @@
 package com.haiykut.ardecorifywebapi.controller;
-
 import com.haiykut.ardecorifywebapi.dto.response.OrderResponseDto;
 import com.haiykut.ardecorifywebapi.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/order")
 @RequiredArgsConstructor
@@ -30,8 +27,8 @@ public class OrderController {
         return new ResponseEntity<>("Order Deleted!", HttpStatus.OK);
     }
     @DeleteMapping("/delete/all")
-    public ResponseEntity<String> deleteAll(){
-        orderService.deleteAll();
+    public ResponseEntity<String> deleteOrders(){
+        orderService.deleteOrders();
         return new ResponseEntity<>("Orders Deleted!", HttpStatus.OK);
     }
 }

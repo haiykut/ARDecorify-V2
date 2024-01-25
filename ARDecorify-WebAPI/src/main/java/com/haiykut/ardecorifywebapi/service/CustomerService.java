@@ -22,7 +22,7 @@ public class CustomerService {
     public Customer getCustomerByIdForUnity(Long id){
         return customerRepository.findById(id).orElseThrow();
     }
-    public CustomerResponseDto addCustomer(CustomerRequestDto userRequestDto){
+    public CustomerResponseDto register(CustomerRequestDto userRequestDto){
         Customer newUser = new Customer();
         newUser.setUsername(userRequestDto.getUsername());
         newUser.setPassword(userRequestDto.getPassword());
@@ -33,10 +33,10 @@ public class CustomerService {
         Customer requestedUser = customerRepository.findById(id).orElseThrow();
         customerRepository.delete(requestedUser);
     }
-    public void deleteAllCustomers(){
+    public void deleteCustomers(){
         customerRepository.deleteAll();
     }
-    public CustomerResponseDto updateCustomer(Long id, CustomerRequestDto userRequestDto){
+    public CustomerResponseDto updateCustomerById(Long id, CustomerRequestDto userRequestDto){
         Customer requestedUser = customerRepository.findById(id).orElseThrow();
         requestedUser.setUsername(userRequestDto.getUsername());
         requestedUser.setPassword(userRequestDto.getPassword());
@@ -45,5 +45,4 @@ public class CustomerService {
     public List<Customer> getCustomersForUnity(){
         return customerRepository.findAll();
     }
-
 }

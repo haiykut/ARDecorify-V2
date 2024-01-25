@@ -25,24 +25,23 @@ public class CategoryService {
                 .collect(Collectors.toList());
         return categoryResponseDtos;
     }
-
     public CategoryResponseDto addCategory(CategoryRequestDto categoryRequestDto){
         Category requestedCategory = new Category();
         requestedCategory.setName(categoryRequestDto.getName());
         categoryRepository.save(requestedCategory);
         return mapperConfig.modelMapper().map(requestedCategory, CategoryResponseDto.class);
     }
-    public CategoryResponseDto updateCategory(Long id, CategoryRequestDto categoryRequestDto){
+    public CategoryResponseDto updateCategoryById(Long id, CategoryRequestDto categoryRequestDto){
         Category requestedCategory = categoryRepository.findById(id).orElseThrow();
         requestedCategory.setName(categoryRequestDto.getName());
         categoryRepository.save(requestedCategory);
         return mapperConfig.modelMapper().map(requestedCategory, CategoryResponseDto.class);
     }
-    public void deleteCategory(Long id){
+    public void deleteCategoryById(Long id){
         Category requestedCategory = categoryRepository.findById(id).orElseThrow();
         categoryRepository.delete(requestedCategory);
     }
-    public void deleteAllCategories(){
+    public void deleteCategories(){
         categoryRepository.deleteAll();
     }
 }

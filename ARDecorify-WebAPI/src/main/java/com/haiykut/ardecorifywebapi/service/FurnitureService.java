@@ -1,5 +1,4 @@
 package com.haiykut.ardecorifywebapi.service;
-
 import com.haiykut.ardecorifywebapi.configuration.MapperConfig;
 import com.haiykut.ardecorifywebapi.dto.request.FurnitureRequestDto;
 import com.haiykut.ardecorifywebapi.dto.response.FurnitureResponseDto;
@@ -8,8 +7,6 @@ import com.haiykut.ardecorifywebapi.model.Furniture;
 import com.haiykut.ardecorifywebapi.repository.FurnitureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -28,7 +25,7 @@ public class FurnitureService {
     }
     public List<FurnitureResponseDto> getFurnitures(){
         List<Furniture> requestedFurnitures = furnitureRepository.findAll();
-        List<FurnitureResponseDto> furnituresDto = new ArrayList<FurnitureResponseDto>();
+        List<FurnitureResponseDto> furnituresDto;
         furnituresDto = requestedFurnitures.stream()
                 .map(furniture -> mapperConfig.modelMapper().map(furniture, FurnitureResponseDto.class))
                 .collect(Collectors.toList());
@@ -40,16 +37,16 @@ public class FurnitureService {
         furnitureResponseDto = mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
         return furnitureResponseDto;
     }
-    public void deleteFurniture(Long id){
+    public void deleteFurnitureById(Long id){
         Furniture requestedFurniture = furnitureRepository.findById(id).orElseThrow();
         furnitureRepository.delete(requestedFurniture);
     }
-    public void deleteAllFurnitures(){
+    public void deleteFurnitures(){
         furnitureRepository.deleteAll();
     }
-    public FurnitureResponseDto updateFurniture(Long id, FurnitureRequestDto furnitureRequestDto){
+    public FurnitureResponseDto updateFurnitureById(Long id, FurnitureRequestDto furnitureRequestDto){
         Furniture requestedFurniture = furnitureRepository.findById(id)
-                .orElse(null);
+                .orElseThrow();
         requestedFurniture.setName(furnitureRequestDto.getName());
         if (furnitureRequestDto.getCategoryId() != null) {
             Category updatedCategory = new Category();
@@ -64,5 +61,4 @@ public class FurnitureService {
     public Furniture getFurnitureForUnityById(Long id){
         return furnitureRepository.findById(id).orElseThrow();
     }
-
 }

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      canvas {
+        display: block;
+      }
+      body {
+        background-image: url("../static/Build/Build.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+      }
+      #unity-container {
+        background: transparent !important;
+        position: absolute;
+      }
+
+      #unity-canvas {
+        position: absolute;
+      }
+      #loading-cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+      }
+      #unity-loading-bar {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #unity-logo {
+        text-align: center;
+        width: 400px;
+      }
+      #unity-logo img {
+        max-width: 80%;
+      }
+      #unity-progress-bar-empty {
+        width: 80%;
+        height: 24px;
+        margin: 10px 20px 20px 10px;
+        text-align: left;
+        border: 1px solid white;
+        padding: 2px;
+      }
+      #unity-progress-bar-full {
+        width: 0%;
+        height: 100%;
+        background: white;
+      }
+      .light #unity-progress-bar-empty {
+        border-color: black;
+      }
+      .light #unity-progress-bar-full {
+        background: black;
+      }
+
+      #unity-fullscreen-button {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        width: 38px;
+        height: 38px;
+        background: url("../static/TemplateData/fullscreen-button.png")
+          no-repeat center;
+        background-size: contain;
+      }
+
+      .spinner,
+      .spinner:after {
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+      }
+      .spinner {
+        margin: 10px;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-left: 1.1em solid #ffffff;
+        transform: translateZ(0);
+        animation: spinner-spin 1.1s infinite linear;
+      }
+      @keyframes spinner-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <link rel="shortcut icon" href="../static/TemplateData/favicon.ico" />
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas"></canvas>
+    </div>
+    <div id="loading-cover" style="display: none">
+      <div id="unity-loading-bar">
+        <div id="unity-logo"><img src="../static/logo.png" /></div>
+        <div id="unity-progress-bar-empty" style="display: none">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div id="unity-fullscreen-button" style="display: none"></div>
+    <script>
+                      const hideFullScreenButton = "{{{ HIDE_FULL_SCREEN_BUTTON }}}";
+                      const buildUrl = "Build";
+                      const loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+                      const loadingCover = document.querySelector("#loading-cover");
+                      const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+                      const progressBarFull = document.querySelector("#unity-progress-bar-full");
+                      const fullscreenButton = document.querySelector("#unity-fullscreen-button");
+                      const spinner = document.querySelector('.spinner');
+                      const canFullscreen = (function() {
+                    for (const key of [
+                'exitFullscreen',
+                'webkitExitFullscreen',
+                'webkitCancelFullScreen',
+                'mozCancelFullScreen',
+                'msExitFullscreen',
+              ]) {
+              if (key in document) {
+                return true;
+              }
+            }
+            return false;
+          }());
+                      loadingCover.style.display = "";
+                      const script = document.createElement("script");
+                      script.src = loaderUrl;
+                      script.onload = () => {
+                        createUnityInstance(document.querySelector("#unity-canvas"), {
+          				dataUrl: "Build/{{{ DATA_FILENAME }}}",
+          				frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+          				codeUrl: "Build/{{{ CODE_FILENAME }}}",
+          #if MEMORY_FILENAME
+          				memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+          #endif
+          #if SYMBOLS_FILENAME
+          				symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+          #endif
+          				streamingAssetsUrl: "StreamingAssets",
+          				companyName: "{{{ COMPANY_NAME }}}",
+          				productName: "{{{ PRODUCT_NAME }}}",
+          				productVersion: "{{{ PRODUCT_VERSION }}}",
+          			}).then(function (instance) {
+                          loadingCover.style.display = "none";
+                          if (canFullscreen) {
+      if (!hideFullScreenButton) {
+        fullscreenButton.style.display = "";
+      }
+      fullscreenButton.onclick = () => {
+        instance.SetFullscreen(1);
+      };
+                          }
+                          var canvas = instance.Module.canvas;
+                          var container = canvas.parentElement;
+                          function onResize() {
+                					var w;
+                					var h;
+                						w = window.innerWidth;
+                						h = window.innerHeight;
+                						var r = {{{ HEIGHT }}} / {{{ WIDTH }}};
+                						if (w * r > window.innerHeight) {
+                							w = Math.min(w, Math.ceil(h / r));
+                						}
+                						h = Math.floor(w * r);
+                					container.style.width = canvas.style.width = w + "px";
+                					container.style.height = canvas.style.height = h + "px";
+                					container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+                					container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
+                				}
+
+                				window.addEventListener('resize', onResize);
+                				onResize();
+
+                        });
+                      };
+                      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

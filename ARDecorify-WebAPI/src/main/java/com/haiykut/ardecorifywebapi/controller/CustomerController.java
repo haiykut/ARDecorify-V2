@@ -1,5 +1,4 @@
 package com.haiykut.ardecorifywebapi.controller;
-
 import com.haiykut.ardecorifywebapi.dto.request.CustomerRequestDto;
 import com.haiykut.ardecorifywebapi.dto.response.CustomerResponseDto;
 import com.haiykut.ardecorifywebapi.service.CustomerService;
@@ -9,14 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/customer")
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
-    @GetMapping()
-    public ResponseEntity<List<CustomerResponseDto>> getAllCustomers(){
+    @GetMapping
+    public ResponseEntity<List<CustomerResponseDto>> getCustomers(){
         return ResponseEntity.ok(customerService.getCustomers());
     }
     @GetMapping("/{id}")
@@ -25,7 +23,7 @@ public class CustomerController {
     }
     @PostMapping("/register")
     public ResponseEntity<CustomerResponseDto> register(@RequestBody CustomerRequestDto customerRequestDto){
-        return ResponseEntity.ok(customerService.addCustomer(customerRequestDto));
+        return ResponseEntity.ok(customerService.register(customerRequestDto));
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCustomerById(@PathVariable Long id){
@@ -33,12 +31,12 @@ public class CustomerController {
         return new ResponseEntity<>("Customer Deleted!", HttpStatus.OK);
     }
     @DeleteMapping("/delete/all")
-    public ResponseEntity<String> deleteAllCustomers(){
-        customerService.deleteAllCustomers();
+    public ResponseEntity<String> deleteCustomers(){
+        customerService.deleteCustomers();
         return new ResponseEntity<>("Customers Deleted!", HttpStatus.OK );
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CustomerRequestDto customerRequestDto){
-        return ResponseEntity.ok(customerService.updateCustomer(id, customerRequestDto));
+        return ResponseEntity.ok(customerService.updateCustomerById(id, customerRequestDto));
     }
 }

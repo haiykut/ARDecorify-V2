@@ -1,5 +1,4 @@
 package com.haiykut.ardecorifywebapi.service;
-
 import com.haiykut.ardecorifywebapi.dto.response.OrderResponseDto;
 import com.haiykut.ardecorifywebapi.dto.response.OrderableFurnitureResponseDto;
 import com.haiykut.ardecorifywebapi.model.Order;
@@ -7,7 +6,6 @@ import com.haiykut.ardecorifywebapi.model.OrderableFurniture;
 import com.haiykut.ardecorifywebapi.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -16,7 +14,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     public List<OrderResponseDto> getOrders(){
         List<Order> allOrders = orderRepository.findAll();
-        List<OrderResponseDto> allOrderDtos = new ArrayList<OrderResponseDto>();
+        List<OrderResponseDto> allOrderDtos = new ArrayList<>();
         for(Order order : allOrders){
             OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto();
             orderableFurnitureResponseDto.setId(order.getOrderId());
@@ -36,7 +34,6 @@ public class OrderService {
     public void save(Order newOrder){
         orderRepository.save(newOrder);
     }
-
     public OrderResponseDto getOrderById(Long id){
         Order requestedOrder = orderRepository.findById(id).orElseThrow();
         OrderResponseDto orderResponse = new OrderResponseDto(requestedOrder.getOrderId(),requestedOrder.getOrderedBy().getCustomerId(), getOrderableFurnitures(requestedOrder));
@@ -46,7 +43,7 @@ public class OrderService {
         Order requestedOrder = orderRepository.findById(id).orElseThrow();
         orderRepository.delete(requestedOrder);
     }
-    public void deleteAll(){
+    public void deleteOrders(){
         orderRepository.deleteAll();
     }
     public Order getOrderForUnityWebGL(Long id){

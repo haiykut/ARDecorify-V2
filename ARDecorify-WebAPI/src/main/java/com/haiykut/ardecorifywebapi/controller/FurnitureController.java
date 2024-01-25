@@ -1,5 +1,4 @@
 package com.haiykut.ardecorifywebapi.controller;
-
 import com.haiykut.ardecorifywebapi.dto.request.FurnitureRequestDto;
 import com.haiykut.ardecorifywebapi.dto.response.FurnitureResponseDto;
 import com.haiykut.ardecorifywebapi.service.FurnitureService;
@@ -15,7 +14,7 @@ import java.util.List;
 public class FurnitureController {
     private final FurnitureService furnitureService;
     @GetMapping
-    public ResponseEntity<List<FurnitureResponseDto>> getAllFurnitures(){
+    public ResponseEntity<List<FurnitureResponseDto>> getFurnitures(){
         return ResponseEntity.ok(furnitureService.getFurnitures());
     }
     @GetMapping("/{id}")
@@ -27,17 +26,17 @@ public class FurnitureController {
         return ResponseEntity.ok(furnitureService.addFurniture(furnitureRequestDto));
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<FurnitureResponseDto> updateFurniture(@PathVariable Long id, @RequestBody FurnitureRequestDto furnitureRequestDto){
-        return ResponseEntity.ok(furnitureService.updateFurniture(id, furnitureRequestDto));
+    public ResponseEntity<FurnitureResponseDto> updateFurnitureById(@PathVariable Long id, @RequestBody FurnitureRequestDto furnitureRequestDto){
+        return ResponseEntity.ok(furnitureService.updateFurnitureById(id, furnitureRequestDto));
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteFurniture(@PathVariable Long id){
-        furnitureService.deleteFurniture(id);
+    public ResponseEntity<String> deleteFurnitureById(@PathVariable Long id){
+        furnitureService.deleteFurnitureById(id);
         return new ResponseEntity<>("Furniture Deleted!", HttpStatus.OK);
     }
     @DeleteMapping("/delete/all")
-    public ResponseEntity<String>deleteAllFurnitures(){
-        furnitureService.deleteAllFurnitures();
+    public ResponseEntity<String> deleteFurnitures(){
+        furnitureService.deleteFurnitures();
         return new ResponseEntity<>("Furnitures Deleted!", HttpStatus.OK);
     }
 }
