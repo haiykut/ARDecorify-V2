@@ -16,11 +16,11 @@ The architecture of the project and this repository consists of folders named "M
 ## 🛠️Installation & Run
 
 - For the Mobile app, you should open the mobile section in the Unity editor, set your [EasyAR SDK](https://portal.easyar.com/) Key and relevant url settings in editor and build the app.
-After you got your build file(.apk), install it to an Android device that has gyroscope and accelerometer sensors.
+  After you got your build file(.apk), install it to an Android device that has gyroscope and accelerometer sensors.
 
-- For the WebGL app, you must set the necessary url adjustments in the Unity editor and build the app. 
-After you got your build files;
-Move Build, TemplateData folders and logo.png file to WebAPI/src/main/resources/static directory and move index.html to WebAPI/src/main/resources/templates directory.
+- For the WebGL app, you must set the necessary url adjustments in the Unity editor and build the app.
+   After you got your build files;
+ Move Build, TemplateData folders and logo.png file to WebAPI/src/main/resources/static directory and move index.html to WebAPI/src/main/resources/templates directory.
 
 - To run your WebAPI app, you can use [Java Spring Boot's instructions](https://spring.io/guides/gs/spring-boot/).
 
@@ -41,8 +41,7 @@ Move Build, TemplateData folders and logo.png file to WebAPI/src/main/resources/
 ![WebGL App](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/webgl.jpg)
 ![WebAPI Entity Relations](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/entityrelations.jpg)
 ![PostgreSQL DB](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/db.jpg)
-![WebAPI Swagger Sample](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger.jpg)
-![WebAPI Swagger Sample 2](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger2.jpg)
 ![OrderableFurniture DB table](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/db2.jpg)
 ![Furniture DB table](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/db3.jpg)
-
+![WebAPI Swagger Sample](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger.jpg)
+![WebAPI Swagger Sample 2](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger2.jpg)
