@@ -20,7 +20,6 @@ public class SceneController : MonoBehaviour
         input = JsonUtility.FromJson<FurnitureMap>(json);
         SetTheScene(CalculateBorders());
         CreateFurnitures();
-        
     }
     Vector3 CalculateBorders()
     {

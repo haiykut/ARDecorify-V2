@@ -759,7 +759,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311eebf16df96de41a6ebccc963bdb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 4900000, guid: 142ea794bd1e6464fb0b4331336d8f42, type: 3}
+  json: '{     "furnitures": [         {             "id": 0,             "position":
+    {                 "x": 10,                 "y": 0,                 "z": 7            
+    },             "rotation": {                 "x": 0,                 "y": 0,                
+    "z": 0             }         },          {             "id": 1,             "position":
+    {                 "x": -10,                 "y": 0,                 "z": 7            
+    },             "rotation": {                 "x": 0,                 "y": 0,                
+    "z": 0             }         },         {             "id": 1,             "position":
+    {                 "x": -10,                 "y": 0,                 "z": -7            
+    },             "rotation": {                 "x": 0,                 "y": -180,                
+    "z": 0             }         },         {             "id": 2,             "position":
+    {                 "x": 10,                 "y": 0,                 "z": -7            
+    },             "rotation": {                 "x": 0,                 "y": -180,                
+    "z": 0             }         },         {             "id": 3,             "position":
+    {                 "x": 0,                 "y": 0,                 "z": 0            
+    },             "rotation": {                 "x": 0,                 "y": 0,                
+    "z": 0             }         }              ] }'
   furnituresSettings: {fileID: 11400000, guid: d446927c4afa05e4280220947d42c7b2, type: 2}
   room: {fileID: 541290719}
   zeroPoint: {fileID: 398839952}

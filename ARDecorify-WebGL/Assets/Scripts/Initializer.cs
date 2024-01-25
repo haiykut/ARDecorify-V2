@@ -4,10 +4,11 @@ using System.Collections;
 using UnityEngine.Networking;
 public class Initializer : MonoBehaviour
 {
-    [SerializeField] internal string json;
+    internal string json;
     public static Initializer instance;
-    public int id;
+    [Header("Set Your BaseUrl that not contains id. \nExample: \"localhost:8080/api/unity/webgl\" ")]
     public string url;
+    //public string sampleUrl;
     private void Awake()
     {
         if (instance != null)
@@ -18,24 +19,20 @@ public class Initializer : MonoBehaviour
     }
     void Start()
     {
-        //SceneManager.LoadScene(1);
-        StartCoroutine(GetData(url, id));
-
+        StartCoroutine(GetData(url));   
     }
-    IEnumerator GetData(string url, int x)
+    IEnumerator GetData(string url)
     {
-        string newUrl = url + "/" + x.ToString();
-        Debug.Log(newUrl);
-        var request = new UnityWebRequest(newUrl, "GET");
+        string appUrl = Application.absoluteURL;
+        int lastIndex = appUrl.LastIndexOf('/');
+        string dataUrl = url + appUrl.Substring(lastIndex);
+        var request = new UnityWebRequest(dataUrl, "GET");    
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        
         yield return request.SendWebRequest();
         if(request.responseCode == 200)
         {
             json = request.downloadHandler.text;
-            Debug.Log(request.downloadHandler.text);
             SceneManager.LoadScene(1);
         }
     }
-
 }

@@ -254,8 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   json: 
-  id: 1
-  url: http://localhost:8080/api/order/unity/webgl
+  url: localhost:8080/api/unity/webgl
 --- !u!4 &685418821
 Transform:
   m_ObjectHideFlags: 0
