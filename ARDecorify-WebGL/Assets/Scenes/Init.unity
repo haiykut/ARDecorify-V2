@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -253,8 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bd991f9f9faa949aaf6ecc4aa1a19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: 
-  url: localhost:8080/api/unity/webgl
+  url: http://localhost:8080/api/unity/webgl
 --- !u!4 &685418821
 Transform:
   m_ObjectHideFlags: 0
