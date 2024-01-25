@@ -61,5 +61,8 @@ public class FurnitureService {
         }
         return mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
     }
+    public Furniture getFurnitureForUnityById(Long id){
+        return furnitureRepository.findById(id).orElseThrow();
+    }
 
 }
