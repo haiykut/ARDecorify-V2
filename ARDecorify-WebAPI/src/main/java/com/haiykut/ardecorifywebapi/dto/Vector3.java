@@ -1,4 +1,4 @@
-package com.haiykut.ardecorifywebapi.util;
+package com.haiykut.ardecorifywebapi.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

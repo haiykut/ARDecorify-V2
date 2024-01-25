@@ -4,6 +4,7 @@ import com.haiykut.ardecorifywebapi.dto.request.FurnitureRequestDto;
 import com.haiykut.ardecorifywebapi.dto.response.FurnitureResponseDto;
 import com.haiykut.ardecorifywebapi.model.Category;
 import com.haiykut.ardecorifywebapi.model.Furniture;
+import com.haiykut.ardecorifywebapi.model.Order;
 import com.haiykut.ardecorifywebapi.repository.FurnitureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FurnitureService {
     private final FurnitureRepository furnitureRepository;
+    private final OrderService orderService;
     private final MapperConfig mapperConfig;
     public FurnitureResponseDto addFurniture(FurnitureRequestDto furnitureRequestDto){
         Furniture requestedFurniture = new Furniture();
@@ -39,9 +41,11 @@ public class FurnitureService {
     }
     public void deleteFurnitureById(Long id){
         Furniture requestedFurniture = furnitureRepository.findById(id).orElseThrow();
+        checkOrder(id);
         furnitureRepository.delete(requestedFurniture);
     }
     public void deleteFurnitures(){
+        checkOrders();
         furnitureRepository.deleteAll();
     }
     public FurnitureResponseDto updateFurnitureById(Long id, FurnitureRequestDto furnitureRequestDto){
@@ -60,5 +64,18 @@ public class FurnitureService {
     }
     public Furniture getFurnitureForUnityById(Long id){
         return furnitureRepository.findById(id).orElseThrow();
+    }
+    public void checkOrders(){
+        if(orderService.getOrders() != null){
+            orderService.deleteOrders();
+        }
+    }
+    public void checkOrder(Long id){
+        List<Order> orders = orderService.getOrdersForFurnitureService();
+        if(orders != null){
+            for(Order order : orders){
+                order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getFurnitureId().longValue() == id.longValue());
+            }
+        }
     }
 }

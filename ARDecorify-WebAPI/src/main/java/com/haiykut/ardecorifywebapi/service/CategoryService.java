@@ -3,6 +3,7 @@ import com.haiykut.ardecorifywebapi.configuration.MapperConfig;
 import com.haiykut.ardecorifywebapi.dto.request.CategoryRequestDto;
 import com.haiykut.ardecorifywebapi.dto.response.CategoryResponseDto;
 import com.haiykut.ardecorifywebapi.model.Category;
+import com.haiykut.ardecorifywebapi.model.Order;
 import com.haiykut.ardecorifywebapi.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final OrderService orderService;
     private final MapperConfig mapperConfig;
     public CategoryResponseDto getCategoryById(Long id){
         Category requestedCategory = categoryRepository.findById(id).orElse(null);
@@ -39,9 +41,24 @@ public class CategoryService {
     }
     public void deleteCategoryById(Long id){
         Category requestedCategory = categoryRepository.findById(id).orElseThrow();
+        checkOrder(id);
         categoryRepository.delete(requestedCategory);
     }
     public void deleteCategories(){
+        checkOrders();
         categoryRepository.deleteAll();
+    }
+
+    public void checkOrders(){
+        if(orderService.getOrders() != null){
+            orderService.deleteOrders();
+        }
+    }
+
+    public void checkOrder(Long id){
+        List<Order> orders = orderService.getOrdersForFurnitureService();
+        for(Order order : orders){
+            order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getFurnitureId().longValue() == id.longValue());
+        }
     }
 }

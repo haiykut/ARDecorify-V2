@@ -1,5 +1,5 @@
 package com.haiykut.ardecorifywebapi.dto.request.unity;
-import com.haiykut.ardecorifywebapi.util.Vector3;
+import com.haiykut.ardecorifywebapi.dto.Vector3;
 import lombok.Data;
 @Data
 public class UnityAddOrderRequestBodyDto {

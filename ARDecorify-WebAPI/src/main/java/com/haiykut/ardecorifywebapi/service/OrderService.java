@@ -36,8 +36,7 @@ public class OrderService {
     }
     public OrderResponseDto getOrderById(Long id){
         Order requestedOrder = orderRepository.findById(id).orElseThrow();
-        OrderResponseDto orderResponse = new OrderResponseDto(requestedOrder.getOrderId(),requestedOrder.getOrderedBy().getCustomerId(), getOrderableFurnitures(requestedOrder));
-        return orderResponse;
+        return new OrderResponseDto(requestedOrder.getOrderId(),requestedOrder.getOrderedBy().getCustomerId(), getOrderableFurnitures(requestedOrder));
     }
     public void deleteOrderById(Long id){
         Order requestedOrder = orderRepository.findById(id).orElseThrow();
@@ -48,5 +47,8 @@ public class OrderService {
     }
     public Order getOrderForUnityWebGL(Long id){
         return orderRepository.findById(id).orElseThrow();
+    }
+    public List<Order> getOrdersForFurnitureService(){
+        return orderRepository.findAll();
     }
 }

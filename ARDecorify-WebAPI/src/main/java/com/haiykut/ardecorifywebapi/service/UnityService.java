@@ -9,7 +9,7 @@ import com.haiykut.ardecorifywebapi.dto.response.unity.webgl.UnityGetOrderRespon
 import com.haiykut.ardecorifywebapi.model.Customer;
 import com.haiykut.ardecorifywebapi.model.Order;
 import com.haiykut.ardecorifywebapi.model.OrderableFurniture;
-import com.haiykut.ardecorifywebapi.util.Vector3;
+import com.haiykut.ardecorifywebapi.dto.Vector3;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
