@@ -24,10 +24,10 @@ public class HttpRequestController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         //TODO: Dev
-        UserDetails ud = new UserDetails();
+        User ud = new User();
         ud.username = "deneme";
         ud.password = "Password";
-        User u = new User();
+        UserMap u = new UserMap();
         u.user = ud;
         Debug.Log(JsonUtility.ToJson(u,true));
         
@@ -54,8 +54,8 @@ public class HttpRequestController : MonoBehaviour
 
     void JsonGenerator(string username, string password)
     {
-        UserDetails userDetails = new UserDetails{ username = username, password = password };
-        User user = new User { user = userDetails };
+        User user = new User{ username = username, password = password };
+        UserMap userMap = new UserMap { user = user };
         StartCoroutine(AuthPost(authUrl, JsonUtility.ToJson(user)));
     }
     public void JsonGenerator(SceneController.FurnitureMap furnitureMap)
@@ -147,14 +147,14 @@ public class HttpRequestController : MonoBehaviour
     }
 }
 [System.Serializable]
-public struct UserDetails
+public struct User
 {
     public string username;
     public string password;
     
 }
 [System.Serializable]
-public struct User
+public struct UserMap
 {
-    public UserDetails user;
+    public User user;
 }

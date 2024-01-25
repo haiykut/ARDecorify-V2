@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    private TextAsset json;
+    private string json;
     private FurnitureMap input;
     [SerializeField] private Objects furnituresSettings;
     [SerializeField] private Transform room;
@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
     }
     void Start()
     {
-        input = JsonUtility.FromJson<FurnitureMap>(json.text);
+        input = JsonUtility.FromJson<FurnitureMap>(json);
         SetTheScene(CalculateBorders());
         CreateFurnitures();
         
