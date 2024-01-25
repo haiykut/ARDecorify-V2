@@ -25,18 +25,20 @@ The architecture of the project and this repository consists of folders named "M
 - To run your WebAPI app, you can use [Java Spring Boot's instructions](https://spring.io/guides/gs/spring-boot/).
 
 ## 🦾Technologies
+
 - [Unity](https://unity.com/learn/get-started)
 - [EasyAR](https://help.easyar.com/EasyAR%20Sense/v1/Getting%20Started/Getting-Started-with-EasyAR.html) 
 - [Java 21](https://docs.oracle.com/en/java/javase/21/migrate/getting-started.html#GUID-C25E2B1D-6C24-4403-8540-CFEA875B994A)
-- Spring Boot [3.2.2](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html)
+- [Spring Boot 3.2.2](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html)
 - [Maven](https://maven.apache.org/guides/getting-started/)
 - [Lombok](https://projectlombok.org/setup/)
 - [ModelMapper](https://modelmapper.org/getting-started/)
-- Restful API
 - [SwaggerUI](https://swagger.io/tools/open-source/getting-started/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
-
+- Restful API
+  
 ## 🖼️Screenshots
+
 ![Mobile App](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/mobile.jpg)
 ![WebGL App](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/webgl.jpg)
 ![WebAPI Entity Relations](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/entityrelations.jpg)
@@ -45,3 +47,4 @@ The architecture of the project and this repository consists of folders named "M
 ![Furniture DB table](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/db3.jpg)
 ![WebAPI Swagger Sample](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger.jpg)
 ![WebAPI Swagger Sample 2](https://github.com/haiykut/ARDecorify-V2/blob/main/screenshots/swagger2.jpg)
+
