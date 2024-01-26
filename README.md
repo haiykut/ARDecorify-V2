@@ -5,7 +5,7 @@ The purpose of this project is to enable interaction between designers/dealers a
 
 ## 🏗️Architecture
 
-The architecture of the project and this repository consists of folders named "Mobile" and "WebGL" made with Unity and "WebAPI" made with Java Spring Boot. Each folder is a source file for an application.
+The architecture of the project and this repository consists of folders named "Mobile" and "WebGL" made with Unity and "WebAPI" made with Java Spring Boot. Each folder is a source file for different and related application.
 
 - In the [Mobile section](https://github.com/haiykut/ARDecorify-V2/tree/main/ARDecorify-Mobile), EasyAR SDK is utilized for surface scanning and image target features, allowing customers to place furnitures in empty spaces such as rooms to get a preliminary idea. Also customers can send these decoration designs to designers/dealers.
 
