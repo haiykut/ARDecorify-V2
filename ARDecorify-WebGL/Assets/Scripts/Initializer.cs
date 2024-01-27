@@ -8,7 +8,6 @@ public class Initializer : MonoBehaviour
     public static Initializer instance;
     [Header("Set Your BaseUrl that not contains id. \nExample: \"localhost:8080/api/unity/webgl\" ")]
     public string url;
-    //public string sampleUrl;
     private void Awake()
     {
         if (instance != null)

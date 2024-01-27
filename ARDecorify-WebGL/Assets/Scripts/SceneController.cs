@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    private string json;
     private FurnitureMap input;
     [SerializeField] private Objects furnituresSettings;
     [SerializeField] private Transform room;
@@ -11,13 +10,10 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Character character;
     [SerializeField] internal Texture2D cursorRotateTexture;
     [SerializeField] internal Texture2D cursorNormalTexture;
-    private void Awake()
-    {
-        json = Initializer.instance.json;
-    }
+ 
     void Start()
     {
-        input = JsonUtility.FromJson<FurnitureMap>(json);
+        input = JsonUtility.FromJson<FurnitureMap>(Initializer.instance.json);
         SetTheScene(CalculateBorders());
         CreateFurnitures();
     }
@@ -37,32 +33,33 @@ public class SceneController : MonoBehaviour
                 borderSizeX = Mathf.Abs(input.furnitures[i].position.x);
             }
         }
-        return new Vector3(borderSizeX + 3, 0.1f, borderSizeZ + 3);
+        return new Vector3(borderSizeX + 10, 0.1f, borderSizeZ + 10);
     }
     void SetTheScene(Vector3 borderSize)
     {
         room.localScale = borderSize;
         zeroPoint.SetParent(null);
         zeroPoint.localScale = Vector3.one;
-        character.transform.SetLocalPositionAndRotation(zeroPoint.localPosition + new Vector3(0,0.75f,0), zeroPoint.localRotation);
+        character.transform.position = new Vector3(0, zeroPoint.localPosition.y + 0.75f, borderSize.z - 10);
+        character.transform.localEulerAngles = new Vector3(0, 180, 0);
+
     }
 
     void CreateFurnitures()
     {
         for (int i = 0; i < input.furnitures.Length; i++)
         {
-            int id = input.furnitures[i].id;
-            Transform furniture = Instantiate(furnituresSettings.objects[id].objectModel).transform;
-            furniture.localEulerAngles = new Vector3(-90, 0, 0);
-            furniture.localPosition = new Vector3(input.furnitures[i].position.x / 2, 0.05f, input.furnitures[i].position.z / 2);
-            furniture.localEulerAngles = new Vector3(-90, input.furnitures[i].rotation.y, input.furnitures[i].rotation.z);
+            long furnitureId = input.furnitures[i].id;
+            Transform furniture = Instantiate(furnituresSettings.objects.Find(x => x.id == furnitureId).objectModel);
+            furniture.localPosition = new Vector3(input.furnitures[i].position.x, 0.05f, input.furnitures[i].position.z);
+            furniture.localEulerAngles = new Vector3(input.furnitures[i].rotation.x, input.furnitures[i].rotation.y, input.furnitures[i].rotation.z);
             furniture.SetParent(zeroPoint);
         }
     }
     [System.Serializable]
     public struct Furniture
     {
-        public int id;
+        public long id;
         public Vector3 position;
         public Vector3 rotation;
     }
