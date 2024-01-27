@@ -26,7 +26,7 @@ public class OrderService {
     public List<OrderableFurnitureResponseDto> getOrderableFurnitures(Order order){
         List<OrderableFurnitureResponseDto> orderableFurnitureResponseDtos = new ArrayList<>();
         for(OrderableFurniture orderableFurniture : order.getFurnitures()){
-            OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto(orderableFurniture.getOrderableFurnitureId(), orderableFurniture.getFurniture().getCategory().getName(), orderableFurniture.getPosX(), orderableFurniture.getPosY(), orderableFurniture.getPosZ(), orderableFurniture.getRotX(), orderableFurniture.getRotY(), orderableFurniture.getRotZ());
+            OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto(orderableFurniture.getFurniture().getFurnitureId(), orderableFurniture.getFurniture().getCategory().getName(), orderableFurniture.getPosX(), orderableFurniture.getPosY(), orderableFurniture.getPosZ(), orderableFurniture.getRotX(), orderableFurniture.getRotY(), orderableFurniture.getRotZ());
             orderableFurnitureResponseDtos.add(orderableFurnitureResponseDto);
         }
         return orderableFurnitureResponseDtos;

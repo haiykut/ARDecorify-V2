@@ -10,7 +10,7 @@ public class Objects : ScriptableObject
     [System.Serializable]
     public class Object
     {
-        public int id;
+        public long id;
         public Transform objectModel;
     }
 }

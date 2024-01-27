@@ -1959,8 +1959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameArea: {fileID: 116424252}
   passwordArea: {fileID: 586455500}
-  authUrl: 
-  confirmUrl: 
+  authUrl: http://localhost:8080/api/unity/mobile/authenticate
+  confirmUrl: http://localhost:8080/api/unity/mobile/addOrder
   registerUrl: 
   strings:
   - "Ba\u011Flant\u0131 ba\u015Far\u0131l\u0131! L\xFCtfen Bekleyin..."

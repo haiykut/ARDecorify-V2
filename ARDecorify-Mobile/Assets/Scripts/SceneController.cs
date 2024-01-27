@@ -188,11 +188,11 @@ public class SceneController : MonoBehaviour
         furnituresPanel.SetActive(true);
     }
     bool asdf;
-    public void FurnitureCreate(int index)
+    public void FurnitureCreate(long index)
     {
-        Transform transform = Instantiate(objectSetting.objects[index].objectModel);
+        Transform transform = Instantiate(objectSetting.objects.Find(x=> x.id == index).objectModel);
         FurnitureScript singleObject = transform.gameObject.AddComponent<FurnitureScript>();
-        singleObject.id = objectSetting.objects[index].id;
+        singleObject.id = index;
         transform.SetParent(zeroPoint.transform);
         transform.localPosition = new Vector3(0, 0, 0f);
         transform.localEulerAngles = new Vector3(180, 0, 0f);

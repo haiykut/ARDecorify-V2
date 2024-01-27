@@ -13,19 +13,11 @@ MonoBehaviour:
   m_Name: FirstFurnitureSetting
   m_EditorClassIdentifier: 
   objects:
-  - id: 0
-    objectModel: {fileID: 5412947398142101004, guid: 8fca0ecf413fa4641900977f56839187, type: 3}
-  - id: 1
-    objectModel: {fileID: 6600944986278329982, guid: 9ef4ff8ceed9ae844a1be3d273d5faff, type: 3}
-  - id: 2
-    objectModel: {fileID: 1314043901862078527, guid: 390292a84dc9b8a43b251730255b3f57, type: 3}
-  - id: 3
-    objectModel: {fileID: 5176441359048680554, guid: fc04b032dc7916845b04bfc6a87b9b4a, type: 3}
-  - id: 4
-    objectModel: {fileID: 4167684643594293636, guid: 854141bdbb82653409161ede20aa3044, type: 3}
   - id: 5
-    objectModel: {fileID: 7754124619926737367, guid: 90a6669abd46fe7458f71a1b3ff2bb3e, type: 3}
-  - id: 6
     objectModel: {fileID: 5176441359048680554, guid: fc04b032dc7916845b04bfc6a87b9b4a, type: 3}
   - id: 7
-    objectModel: {fileID: 5430929903956058357, guid: 728952a2c8717594091126c73994d96d, type: 3}
+    objectModel: {fileID: 1314043901862078527, guid: 390292a84dc9b8a43b251730255b3f57, type: 3}
+  - id: 6
+    objectModel: {fileID: 5412947398142101004, guid: 8fca0ecf413fa4641900977f56839187, type: 3}
+  - id: 3
+    objectModel: {fileID: 6600944986278329982, guid: 9ef4ff8ceed9ae844a1be3d273d5faff, type: 3}

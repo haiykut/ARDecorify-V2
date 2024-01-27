@@ -46,8 +46,8 @@ public class HttpRequestController : MonoBehaviour
     void JsonGenerator(string username, string password)
     {
         User user = new User{ username = username, password = password };
-        UserMap userMap = new UserMap { user = user };
-        StartCoroutine(AuthPost(authUrl, JsonUtility.ToJson(user)));
+        UserMap userMap = new UserMap { customer = user };
+        StartCoroutine(AuthPost(authUrl, JsonUtility.ToJson(userMap)));
     }
     public void JsonGenerator(SceneController.FurnitureMap furnitureMap)
     {
@@ -105,14 +105,13 @@ public class HttpRequestController : MonoBehaviour
                 status.color = stringColors[1];
                 StartCoroutine(ObjectCloser(status.gameObject, 2, false));
             }
-
         }
         else
         {
             status.text = strings[2];
             status.color = stringColors[2];
             StartCoroutine(ObjectCloser(status.gameObject, 2, false));
-            Debug.Log("network error");
+            Debug.Log(request.responseCode);
         }
         request.Dispose();
         request.uploadHandler.Dispose();
@@ -145,7 +144,7 @@ public struct User
 [System.Serializable]
 public struct UserMap
 {
-    public User user;
+    public User customer;
 }
 
 [System.Serializable]

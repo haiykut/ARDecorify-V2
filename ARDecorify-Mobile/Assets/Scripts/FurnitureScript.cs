@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FurnitureScript : MonoBehaviour
 {
-    public int id;
+    public long id;
     public Transform transf;
     // Start is called before the first frame update
 
