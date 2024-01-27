@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class SceneController : MonoBehaviour
 {
     [Header("Selective Object")]
@@ -46,17 +45,7 @@ public class SceneController : MonoBehaviour
         {
             allUiElements[i].SetActive(true);
         }
-        arGuide.SetActive(false);
-        
-        //TODO: Dev
-        Furniture f = new Furniture();
-        f.id = 3;
-        f.position = transform.localPosition;
-        f.rotation = transform.localEulerAngles;
-        confirmedFurnituresList.Add(f);
-        FurnitureMap confirmedFurnitures = new FurnitureMap { furnitures = confirmedFurnituresList };
-        httpReqController.JsonGenerator(confirmedFurnitures);
-        
+        arGuide.SetActive(false);       
     }
 
     private void Start()
@@ -100,7 +89,6 @@ public class SceneController : MonoBehaviour
                 }
             }
         }
-
         if (GameObject.FindGameObjectsWithTag("Furniture").Length <= 0)
         {
             deleteAllButton.interactable = false;
@@ -178,7 +166,7 @@ public class SceneController : MonoBehaviour
                                                                                                                                                                // FurnitueScript bir scriptableobject
             confirmedFurnituresList.Add(o); // Olusturulan her nesne bir listeye ekleniyor
         }
-        FurnitureMap confirmedFurnitures = new FurnitureMap { furnitures = confirmedFurnituresList }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
+        FurnitureMap confirmedFurnitures = new FurnitureMap {orderedBy = httpReqController.userId ,furnitures = confirmedFurnituresList }; // Furnitures classinin icerisinde tekil esyalarin bir listesi bulunuyor ve bu listeyle onaylanan
                                                                                              // esyalarin listesi esitleniyor.
                                                                                              // Json formatina cevirebilmek icin class kullanmak zorunlu.
 
@@ -214,13 +202,14 @@ public class SceneController : MonoBehaviour
     [System.Serializable]
     public struct Furniture
     {
-        public int id;
+        public long id;
         public Vector3 position;
         public Vector3 rotation;
     }
     [System.Serializable]
     public struct FurnitureMap
     {
+        public long orderedBy;
         public List<Furniture> furnitures;
     }
 }

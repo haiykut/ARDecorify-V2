@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -19,25 +20,16 @@ public class HttpRequestController : MonoBehaviour
     [SerializeField] Text status;
     [SerializeField] Text waiting;
     internal bool isDoneSession;
+    internal long userId = -1;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        
-        //TODO: Dev
-        User ud = new User();
-        ud.username = "deneme";
-        ud.password = "Password";
-        UserMap u = new UserMap();
-        u.user = ud;
-        Debug.Log(JsonUtility.ToJson(u,true));
-        
     }
     public void SubmitMethod()
     {
         if (usernameArea.text != "" && passwordArea.text != "")
         {
-            JsonGenerator(usernameArea.text, passwordArea.text);
-        
+            JsonGenerator(usernameArea.text, passwordArea.text);    
         }
         else
         {
@@ -45,7 +37,6 @@ public class HttpRequestController : MonoBehaviour
             status.color = stringColors[3];
             StartCoroutine(ObjectCloser(status.gameObject, 2, false));
         }
-
     }
     public void Register()
     {
@@ -96,11 +87,13 @@ public class HttpRequestController : MonoBehaviour
         yield return request.SendWebRequest();
         if(request.responseCode==200)
         {
-            
-            if (request.downloadHandler.text == "true")
+            Authentication auth = new Authentication();
+            auth = JsonUtility.FromJson<Authentication>(request.downloadHandler.text);
+            if (auth.sessionMessage == "true" || auth.userId != -1)
             {
                 status.text = strings[0];
                 status.color = stringColors[0];
+                userId = auth.userId;
                 StartCoroutine(ObjectCloser(status.gameObject, 2, false));
                 yield return new WaitForSeconds(2);
                 SceneManager.LoadScene("SurfaceTracking_ImageTarget");
@@ -121,12 +114,9 @@ public class HttpRequestController : MonoBehaviour
             StartCoroutine(ObjectCloser(status.gameObject, 2, false));
             Debug.Log("network error");
         }
-
         request.Dispose();
         request.uploadHandler.Dispose();
         request.downloadHandler.Dispose();
-
-
     }
 
     IEnumerator ObjectCloser(GameObject go, float time, bool isClosing)
@@ -143,7 +133,6 @@ public class HttpRequestController : MonoBehaviour
             yield return new WaitForSeconds(time);
             go.SetActive(false);
         }
-      
     }
 }
 [System.Serializable]
@@ -157,4 +146,11 @@ public struct User
 public struct UserMap
 {
     public User user;
+}
+
+[System.Serializable]
+public struct Authentication
+{
+    public string sessionMessage;
+    public long userId;
 }

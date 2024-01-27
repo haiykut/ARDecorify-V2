@@ -1957,14 +1957,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7060e1daddd2a14da7c6dd1280a327f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonToClass:
-    username: 
-    password: 
   usernameArea: {fileID: 116424252}
   passwordArea: {fileID: 586455500}
-  authUrl: https://ardecorify.halil.wtf/login
-  confirmUrl: https://ardecorify.halil.wtf/furniturerequest
-  registerUrl: https://ardecorify.halil.wtf/
+  authUrl: 
+  confirmUrl: 
+  registerUrl: 
   strings:
   - "Ba\u011Flant\u0131 ba\u015Far\u0131l\u0131! L\xFCtfen Bekleyin..."
   - "Kullan\u0131c\u0131 Ad\u0131/\u015Eifre Yanl\u0131\u015F!"
