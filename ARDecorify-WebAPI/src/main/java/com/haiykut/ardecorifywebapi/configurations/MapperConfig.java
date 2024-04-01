@@ -1,4 +1,4 @@
-package com.haiykut.ardecorifywebapi.configuration;
+package com.haiykut.ardecorifywebapi.configurations;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

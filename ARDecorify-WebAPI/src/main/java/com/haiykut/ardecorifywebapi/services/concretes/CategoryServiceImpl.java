@@ -1,5 +1,5 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
-import com.haiykut.ardecorifywebapi.configuration.MapperConfig;
+import com.haiykut.ardecorifywebapi.configurations.MapperConfig;
 import com.haiykut.ardecorifywebapi.services.abstracts.CategoryService;
 import com.haiykut.ardecorifywebapi.services.dtos.request.CategoryRequestDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.CategoryResponseDto;

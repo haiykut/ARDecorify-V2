@@ -1,5 +1,5 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
-import com.haiykut.ardecorifywebapi.configuration.MapperConfig;
+import com.haiykut.ardecorifywebapi.configurations.MapperConfig;
 import com.haiykut.ardecorifywebapi.services.abstracts.FurnitureService;
 import com.haiykut.ardecorifywebapi.services.dtos.request.FurnitureRequestDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.FurnitureResponseDto;
