@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CategoryResponseDto {
-    private Long categoryId;
+    private Long id;
     private String name;
 }

@@ -17,8 +17,8 @@ public class OrderService {
         List<OrderResponseDto> allOrderDtos = new ArrayList<>();
         for(Order order : allOrders){
             OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto();
-            orderableFurnitureResponseDto.setId(order.getOrderId());
-            OrderResponseDto o = new OrderResponseDto(order.getOrderId(),order.getOrderedBy().getCustomerId(), getOrderableFurnitures(order));
+            orderableFurnitureResponseDto.setId(order.getId());
+            OrderResponseDto o = new OrderResponseDto(order.getId(),order.getOrderedBy().getId(), getOrderableFurnitures(order));
             allOrderDtos.add(o);
         }
         return  allOrderDtos;
@@ -26,7 +26,7 @@ public class OrderService {
     public List<OrderableFurnitureResponseDto> getOrderableFurnitures(Order order){
         List<OrderableFurnitureResponseDto> orderableFurnitureResponseDtos = new ArrayList<>();
         for(OrderableFurniture orderableFurniture : order.getFurnitures()){
-            OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto(orderableFurniture.getFurniture().getFurnitureId(), orderableFurniture.getFurniture().getCategory().getName(), orderableFurniture.getPosX(), orderableFurniture.getPosY(), orderableFurniture.getPosZ(), orderableFurniture.getRotX(), orderableFurniture.getRotY(), orderableFurniture.getRotZ());
+            OrderableFurnitureResponseDto orderableFurnitureResponseDto = new OrderableFurnitureResponseDto(orderableFurniture.getFurniture().getId(), orderableFurniture.getFurniture().getCategory().getName(), orderableFurniture.getPosX(), orderableFurniture.getPosY(), orderableFurniture.getPosZ(), orderableFurniture.getRotX(), orderableFurniture.getRotY(), orderableFurniture.getRotZ());
             orderableFurnitureResponseDtos.add(orderableFurnitureResponseDto);
         }
         return orderableFurnitureResponseDtos;
@@ -36,7 +36,7 @@ public class OrderService {
     }
     public OrderResponseDto getOrderById(Long id){
         Order requestedOrder = orderRepository.findById(id).orElseThrow();
-        return new OrderResponseDto(requestedOrder.getOrderId(),requestedOrder.getOrderedBy().getCustomerId(), getOrderableFurnitures(requestedOrder));
+        return new OrderResponseDto(requestedOrder.getId(),requestedOrder.getOrderedBy().getId(), getOrderableFurnitures(requestedOrder));
     }
     public void deleteOrderById(Long id){
         Order requestedOrder = orderRepository.findById(id).orElseThrow();

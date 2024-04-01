@@ -14,9 +14,8 @@ public class Category {
     @Id
     @GeneratedValue
     @JsonIgnore
-    private Long categoryId;
+    private Long id;
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
     private List<Furniture> furnitures;
 }

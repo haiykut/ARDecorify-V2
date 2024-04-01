@@ -13,7 +13,7 @@ import lombok.Setter;
 public class OrderableFurniture {
     @Id
     @GeneratedValue
-    private Long orderableFurnitureId;
+    private Long id;
     @ManyToOne
     private Furniture furniture;
     private float posX, posY, posZ, rotX, rotY, rotZ;

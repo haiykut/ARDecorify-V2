@@ -33,7 +33,7 @@ public class CustomerController {
     @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteCustomers(){
         customerService.deleteCustomers();
-        return new ResponseEntity<>("Customers Deleted!", HttpStatus.OK );
+        return new ResponseEntity<>("Customers Deleted!", HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CustomerRequestDto customerRequestDto){

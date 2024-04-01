@@ -49,12 +49,12 @@ public class UnityService {
         List<Customer> customers = customerService.getCustomersForUnity();
         StringBuilder username = new StringBuilder(userRequestDto.getCustomer().getUsername());
         StringBuilder password = new StringBuilder(userRequestDto.getCustomer().getPassword());
-        Boolean authenticate = false;
+        Boolean authenticate = Boolean.FALSE;
         Long userId = (long) -1;
         for(Customer customer : customers){
             if(customer.getUsername().contentEquals(username.toString()) && customer.getPassword().contentEquals(password.toString())){
                 authenticate = true;
-                userId = customer.getCustomerId();
+                userId = customer.getId();
             }
         }
         String response = authenticate.toString();
@@ -76,7 +76,7 @@ public class UnityService {
     }
     private UnityGetOrderResponseBodyDto getUnityGetOrderResponseBodyDto(OrderableFurniture orderableFurniture) {
         UnityGetOrderResponseBodyDto unityOrderResponseBodyDto = new UnityGetOrderResponseBodyDto();
-        unityOrderResponseBodyDto.setId(orderableFurniture.getFurniture().getFurnitureId());
+        unityOrderResponseBodyDto.setId(orderableFurniture.getFurniture().getId());
         unityOrderResponseBodyDto.setPosition(new Vector3(orderableFurniture.getPosX(), orderableFurniture.getPosY(), orderableFurniture.getPosZ()));
         unityOrderResponseBodyDto.setRotation(new Vector3(orderableFurniture.getRotX(), orderableFurniture.getRotY(), orderableFurniture.getRotZ()));
         return unityOrderResponseBodyDto;

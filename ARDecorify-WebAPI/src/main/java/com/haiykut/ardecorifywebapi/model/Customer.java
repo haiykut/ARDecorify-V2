@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Customer {
     @Id
     @GeneratedValue
-    private Long customerId;
+    private Long id;
     private String username;
     private String password;
 }

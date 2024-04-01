@@ -20,7 +20,7 @@ public class FurnitureService {
         Furniture requestedFurniture = new Furniture();
         requestedFurniture.setName(furnitureRequestDto.getName());
         Category category = new Category();
-        category.setCategoryId(furnitureRequestDto.getCategoryId());
+        category.setId(furnitureRequestDto.getCategoryId());
         requestedFurniture.setCategory(category);
         furnitureRepository.save(requestedFurniture);
         return mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
@@ -54,7 +54,7 @@ public class FurnitureService {
         requestedFurniture.setName(furnitureRequestDto.getName());
         if (furnitureRequestDto.getCategoryId() != null) {
             Category updatedCategory = new Category();
-            updatedCategory.setCategoryId(furnitureRequestDto.getCategoryId());
+            updatedCategory.setId(furnitureRequestDto.getCategoryId());
             requestedFurniture.setCategory(updatedCategory);
             furnitureRepository.save(requestedFurniture);
         } else {
@@ -74,7 +74,7 @@ public class FurnitureService {
         List<Order> orders = orderService.getOrdersForFurnitureService();
         if(orders != null){
             for(Order order : orders){
-                order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getFurnitureId().longValue() == id.longValue());
+                order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getId().longValue() == id.longValue());
             }
         }
     }

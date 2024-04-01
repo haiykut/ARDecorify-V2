@@ -58,7 +58,7 @@ public class CategoryService {
     public void checkOrder(Long id){
         List<Order> orders = orderService.getOrdersForFurnitureService();
         for(Order order : orders){
-            order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getFurnitureId().longValue() == id.longValue());
+            order.getFurnitures().removeIf(orderableFurniture -> orderableFurniture.getFurniture().getId().longValue() == id.longValue());
         }
     }
 }
