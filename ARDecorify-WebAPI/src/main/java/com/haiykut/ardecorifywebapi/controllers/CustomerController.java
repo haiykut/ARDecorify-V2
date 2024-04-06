@@ -6,6 +6,7 @@ import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerUpdat
 import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerAddResponseDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerGetResponseDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerUpdateResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
     @PostMapping("/register")
-    public ResponseEntity<CustomerAddResponseDto> register(@RequestBody CustomerAddRequestDto customerRequestDto){
+    public ResponseEntity<CustomerAddResponseDto> register(@Valid @RequestBody CustomerAddRequestDto customerRequestDto){
         return ResponseEntity.ok(customerService.register(customerRequestDto));
     }
     @DeleteMapping("/delete/{id}")
@@ -39,7 +40,7 @@ public class CustomerController {
         return new ResponseEntity<>("Customers Deleted!", HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<CustomerUpdateResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CustomerUpdateRequestDto customerRequestDto){
+    public ResponseEntity<CustomerUpdateResponseDto> updateCustomerById(@Valid @PathVariable Long id, @RequestBody CustomerUpdateRequestDto customerRequestDto){
         return ResponseEntity.ok(customerService.updateCustomerById(id, customerRequestDto));
     }
 }

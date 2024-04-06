@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerGetRequestDto {
-    @NotEmpty
     private String username;
-    @NotEmpty
     private String password;
 }

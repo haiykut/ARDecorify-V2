@@ -6,6 +6,7 @@ import com.haiykut.ardecorifywebapi.services.dtos.request.furniture.FurnitureUpd
 import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureAddResponseDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureGetResponseDto;
 import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureUpdateResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,11 @@ public class FurnitureController {
         return ResponseEntity.ok(furnitureService.getFurnitureById(id));
     }
     @PostMapping("/add")
-    public ResponseEntity<FurnitureAddResponseDto> addFurniture(@RequestBody FurnitureAddRequestDto furnitureRequestDto){
+    public ResponseEntity<FurnitureAddResponseDto> addFurniture(@Valid @RequestBody FurnitureAddRequestDto furnitureRequestDto){
         return ResponseEntity.ok(furnitureService.addFurniture(furnitureRequestDto));
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<FurnitureUpdateResponseDto> updateFurnitureById(@PathVariable Long id, @RequestBody FurnitureUpdateRequestDto furnitureRequestDto){
+    public ResponseEntity<FurnitureUpdateResponseDto> updateFurnitureById(@Valid @PathVariable Long id, @RequestBody FurnitureUpdateRequestDto furnitureRequestDto){
         return ResponseEntity.ok(furnitureService.updateFurnitureById(id, furnitureRequestDto));
     }
     @DeleteMapping("/delete/{id}")

@@ -13,7 +13,5 @@ import lombok.Setter;
 @Setter
 public class CategoryGetRequestDto {
     private Long id;
-    @NotBlank
-    @Size(min = 2, max = 50)
     private String name;
 }

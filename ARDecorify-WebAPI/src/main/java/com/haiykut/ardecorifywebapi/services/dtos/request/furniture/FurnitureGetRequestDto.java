@@ -7,8 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FurnitureGetRequestDto {
-    @NotEmpty
     private String name;
-    @NotEmpty
     private Long categoryId;
 }
