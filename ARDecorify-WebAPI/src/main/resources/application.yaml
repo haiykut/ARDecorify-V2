@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    #for docker virtual machine 172.17.0.2:5432
+    url: jdbc:postgresql://localhost:5433/ardecorify
+    username: postgres
+    password: test123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+server:
+  port: 8080

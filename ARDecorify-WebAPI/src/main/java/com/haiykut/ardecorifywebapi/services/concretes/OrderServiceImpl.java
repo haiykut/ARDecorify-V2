@@ -1,7 +1,7 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
 import com.haiykut.ardecorifywebapi.services.abstracts.OrderService;
-import com.haiykut.ardecorifywebapi.services.dtos.response.OrderResponseDto;
-import com.haiykut.ardecorifywebapi.services.dtos.response.OrderableFurnitureResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.order.OrderResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.orderablefurniture.OrderableFurnitureResponseDto;
 import com.haiykut.ardecorifywebapi.entities.Order;
 import com.haiykut.ardecorifywebapi.entities.OrderableFurniture;
 import com.haiykut.ardecorifywebapi.repositories.OrderRepository;

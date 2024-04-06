@@ -1,11 +1,15 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
 import com.haiykut.ardecorifywebapi.configurations.MapperConfig;
 import com.haiykut.ardecorifywebapi.services.abstracts.CategoryService;
-import com.haiykut.ardecorifywebapi.services.dtos.request.CategoryRequestDto;
-import com.haiykut.ardecorifywebapi.services.dtos.response.CategoryResponseDto;
+import com.haiykut.ardecorifywebapi.services.abstracts.OrderService;
+import com.haiykut.ardecorifywebapi.services.dtos.request.category.CategoryAddRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.category.CategoryUpdateRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.category.CategoryAddResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.category.CategoryGetResponseDto;
 import com.haiykut.ardecorifywebapi.entities.Category;
 import com.haiykut.ardecorifywebapi.entities.Order;
 import com.haiykut.ardecorifywebapi.repositories.CategoryRepository;
+import com.haiykut.ardecorifywebapi.services.dtos.response.category.CategoryUpdateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -14,35 +18,35 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
-    private final OrderServiceImpl orderService;
+    private final OrderService orderService;
     private final MapperConfig mapperConfig;
     @Override
-    public CategoryResponseDto getCategoryById(Long id){
+    public CategoryGetResponseDto getCategoryById(Long id){
         Category requestedCategory = categoryRepository.findById(id).orElse(null);
-        return mapperConfig.modelMapper().map(requestedCategory, CategoryResponseDto.class);
+        return mapperConfig.modelMapper().map(requestedCategory, CategoryGetResponseDto.class);
     }
     @Override
-    public List<CategoryResponseDto> getCategories(){
+    public List<CategoryGetResponseDto> getCategories(){
         List<Category> requestedCategories = categoryRepository.findAll();
-        List<CategoryResponseDto> categoryResponseDtos;
+        List<CategoryGetResponseDto> categoryResponseDtos;
         categoryResponseDtos = requestedCategories.stream()
-                .map(category -> mapperConfig.modelMapper().map(category, CategoryResponseDto.class))
+                .map(category -> mapperConfig.modelMapper().map(category, CategoryGetResponseDto.class))
                 .collect(Collectors.toList());
         return categoryResponseDtos;
     }
     @Override
-    public CategoryResponseDto addCategory(CategoryRequestDto categoryRequestDto){
+    public CategoryAddResponseDto addCategory(CategoryAddRequestDto categoryRequestDto){
         Category requestedCategory = new Category();
         requestedCategory.setName(categoryRequestDto.getName());
         categoryRepository.save(requestedCategory);
-        return mapperConfig.modelMapper().map(requestedCategory, CategoryResponseDto.class);
+        return mapperConfig.modelMapper().map(requestedCategory, CategoryAddResponseDto.class);
     }
     @Override
-    public CategoryResponseDto updateCategoryById(Long id, CategoryRequestDto categoryRequestDto){
+    public CategoryUpdateResponseDto updateCategoryById(Long id, CategoryUpdateRequestDto categoryRequestDto){
         Category requestedCategory = categoryRepository.findById(id).orElseThrow();
         requestedCategory.setName(categoryRequestDto.getName());
         categoryRepository.save(requestedCategory);
-        return mapperConfig.modelMapper().map(requestedCategory, CategoryResponseDto.class);
+        return mapperConfig.modelMapper().map(requestedCategory, CategoryUpdateResponseDto.class);
     }
     @Override
     public void deleteCategoryById(Long id){

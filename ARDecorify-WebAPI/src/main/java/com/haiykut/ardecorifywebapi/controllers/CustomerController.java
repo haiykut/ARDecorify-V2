@@ -1,7 +1,11 @@
 package com.haiykut.ardecorifywebapi.controllers;
 import com.haiykut.ardecorifywebapi.services.abstracts.CustomerService;
-import com.haiykut.ardecorifywebapi.services.dtos.request.CustomerRequestDto;
-import com.haiykut.ardecorifywebapi.services.dtos.response.CustomerResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerAddRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerGetRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerUpdateRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerAddResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerGetResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerUpdateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +17,15 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService customerService;
     @GetMapping
-    public ResponseEntity<List<CustomerResponseDto>> getCustomers(){
+    public ResponseEntity<List<CustomerGetResponseDto>> getCustomers(){
         return ResponseEntity.ok(customerService.getCustomers());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long id){
+    public ResponseEntity<CustomerGetResponseDto> getCustomerById(@PathVariable Long id){
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
     @PostMapping("/register")
-    public ResponseEntity<CustomerResponseDto> register(@RequestBody CustomerRequestDto customerRequestDto){
+    public ResponseEntity<CustomerAddResponseDto> register(@RequestBody CustomerAddRequestDto customerRequestDto){
         return ResponseEntity.ok(customerService.register(customerRequestDto));
     }
     @DeleteMapping("/delete/{id}")
@@ -35,7 +39,7 @@ public class CustomerController {
         return new ResponseEntity<>("Customers Deleted!", HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CustomerRequestDto customerRequestDto){
+    public ResponseEntity<CustomerUpdateResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CustomerUpdateRequestDto customerRequestDto){
         return ResponseEntity.ok(customerService.updateCustomerById(id, customerRequestDto));
     }
 }

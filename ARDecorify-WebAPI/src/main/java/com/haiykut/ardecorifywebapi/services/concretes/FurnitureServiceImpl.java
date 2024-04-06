@@ -1,12 +1,17 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
 import com.haiykut.ardecorifywebapi.configurations.MapperConfig;
 import com.haiykut.ardecorifywebapi.services.abstracts.FurnitureService;
-import com.haiykut.ardecorifywebapi.services.dtos.request.FurnitureRequestDto;
-import com.haiykut.ardecorifywebapi.services.dtos.response.FurnitureResponseDto;
+import com.haiykut.ardecorifywebapi.services.abstracts.OrderService;
+import com.haiykut.ardecorifywebapi.services.dtos.request.furniture.FurnitureAddRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.furniture.FurnitureGetRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.furniture.FurnitureUpdateRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureAddResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureGetResponseDto;
 import com.haiykut.ardecorifywebapi.entities.Category;
 import com.haiykut.ardecorifywebapi.entities.Furniture;
 import com.haiykut.ardecorifywebapi.entities.Order;
 import com.haiykut.ardecorifywebapi.repositories.FurnitureRepository;
+import com.haiykut.ardecorifywebapi.services.dtos.response.furniture.FurnitureUpdateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,32 +20,32 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FurnitureServiceImpl implements FurnitureService {
     private final FurnitureRepository furnitureRepository;
-    private final OrderServiceImpl orderService;
+    private final OrderService orderService;
     private final MapperConfig mapperConfig;
     @Override
-    public FurnitureResponseDto addFurniture(FurnitureRequestDto furnitureRequestDto){
+    public FurnitureAddResponseDto addFurniture(FurnitureAddRequestDto furnitureRequestDto){
         Furniture requestedFurniture = new Furniture();
         requestedFurniture.setName(furnitureRequestDto.getName());
         Category category = new Category();
         category.setId(furnitureRequestDto.getCategoryId());
         requestedFurniture.setCategory(category);
         furnitureRepository.save(requestedFurniture);
-        return mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
+        return mapperConfig.modelMapper().map(requestedFurniture, FurnitureAddResponseDto.class);
     }
     @Override
-    public List<FurnitureResponseDto> getFurnitures(){
+    public List<FurnitureGetResponseDto> getFurnitures(){
         List<Furniture> requestedFurnitures = furnitureRepository.findAll();
-        List<FurnitureResponseDto> furnituresDto;
+        List<FurnitureGetResponseDto> furnituresDto;
         furnituresDto = requestedFurnitures.stream()
-                .map(furniture -> mapperConfig.modelMapper().map(furniture, FurnitureResponseDto.class))
+                .map(furniture -> mapperConfig.modelMapper().map(furniture, FurnitureGetResponseDto.class))
                 .collect(Collectors.toList());
         return furnituresDto;
     }
     @Override
-    public FurnitureResponseDto getFurnitureById(Long id){
+    public FurnitureGetResponseDto getFurnitureById(Long id){
         Furniture requestedFurniture = furnitureRepository.findById(id).orElseThrow();
-        FurnitureResponseDto furnitureResponseDto;
-        furnitureResponseDto = mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
+        FurnitureGetResponseDto furnitureResponseDto;
+        furnitureResponseDto = mapperConfig.modelMapper().map(requestedFurniture, FurnitureGetResponseDto.class);
         return furnitureResponseDto;
     }
     @Override
@@ -55,7 +60,7 @@ public class FurnitureServiceImpl implements FurnitureService {
         furnitureRepository.deleteAll();
     }
     @Override
-    public FurnitureResponseDto updateFurnitureById(Long id, FurnitureRequestDto furnitureRequestDto){
+    public FurnitureUpdateResponseDto updateFurnitureById(Long id, FurnitureUpdateRequestDto furnitureRequestDto){
         Furniture requestedFurniture = furnitureRepository.findById(id)
                 .orElseThrow();
         requestedFurniture.setName(furnitureRequestDto.getName());
@@ -67,7 +72,7 @@ public class FurnitureServiceImpl implements FurnitureService {
         } else {
             requestedFurniture.setCategory(null);
         }
-        return mapperConfig.modelMapper().map(requestedFurniture, FurnitureResponseDto.class);
+        return mapperConfig.modelMapper().map(requestedFurniture, FurnitureUpdateResponseDto.class);
     }
     @Override
     public Furniture getFurnitureForUnityById(Long id){

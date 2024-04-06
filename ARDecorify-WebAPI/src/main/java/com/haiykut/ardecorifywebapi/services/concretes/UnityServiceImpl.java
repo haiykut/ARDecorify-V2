@@ -1,4 +1,7 @@
 package com.haiykut.ardecorifywebapi.services.concretes;
+import com.haiykut.ardecorifywebapi.services.abstracts.CustomerService;
+import com.haiykut.ardecorifywebapi.services.abstracts.FurnitureService;
+import com.haiykut.ardecorifywebapi.services.abstracts.OrderService;
 import com.haiykut.ardecorifywebapi.services.abstracts.UnityService;
 import com.haiykut.ardecorifywebapi.services.dtos.request.unity.UnityAddOrderRequestBodyDto;
 import com.haiykut.ardecorifywebapi.services.dtos.request.unity.UnityAddOrderRequestDto;
@@ -22,9 +25,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UnityServiceImpl implements UnityService {
-    private final CustomerServiceImpl customerService;
-    private final FurnitureServiceImpl furnitureService;
-    private final OrderServiceImpl orderService;
+    private final CustomerService customerService;
+    private final FurnitureService furnitureService;
+    private final OrderService orderService;
     //Mobile
     @Override
     public UnityAddOrderResponseDto addOrder(UnityAddOrderRequestDto unityOrderRequestDto){

@@ -1,4 +1,5 @@
-package com.haiykut.ardecorifywebapi.services.dtos.response;
+package com.haiykut.ardecorifywebapi.services.dtos.response.order;
+import com.haiykut.ardecorifywebapi.services.dtos.response.orderablefurniture.OrderableFurnitureResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

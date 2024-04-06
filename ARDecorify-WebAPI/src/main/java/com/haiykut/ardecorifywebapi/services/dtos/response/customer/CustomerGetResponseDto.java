@@ -1,4 +1,4 @@
-package com.haiykut.ardecorifywebapi.services.dtos.response;
+package com.haiykut.ardecorifywebapi.services.dtos.response.customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerResponseDto {
+public class CustomerGetResponseDto {
     private Long customerId;
     private String username;
     private String password;

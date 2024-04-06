@@ -1,6 +1,6 @@
 package com.haiykut.ardecorifywebapi.controllers;
 import com.haiykut.ardecorifywebapi.services.abstracts.OrderService;
-import com.haiykut.ardecorifywebapi.services.dtos.response.OrderResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.order.OrderResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

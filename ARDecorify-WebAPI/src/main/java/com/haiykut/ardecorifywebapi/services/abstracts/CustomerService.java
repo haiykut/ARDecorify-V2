@@ -1,15 +1,20 @@
 package com.haiykut.ardecorifywebapi.services.abstracts;
 import com.haiykut.ardecorifywebapi.entities.Customer;
-import com.haiykut.ardecorifywebapi.services.dtos.request.CustomerRequestDto;
-import com.haiykut.ardecorifywebapi.services.dtos.response.CustomerResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerAddRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerGetRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.request.customer.CustomerUpdateRequestDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerAddResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerGetResponseDto;
+import com.haiykut.ardecorifywebapi.services.dtos.response.customer.CustomerUpdateResponseDto;
+
 import java.util.List;
 public interface CustomerService {
-    List<CustomerResponseDto> getCustomers();
-    CustomerResponseDto getCustomerById(Long id);
+    List<CustomerGetResponseDto> getCustomers();
+    CustomerGetResponseDto getCustomerById(Long id);
     Customer getCustomerByIdForUnity(Long id);
-    CustomerResponseDto register(CustomerRequestDto userRequestDto);
+    CustomerAddResponseDto register(CustomerAddRequestDto userRequestDto);
     void deleteCustomerById(Long id);
     void deleteCustomers();
-    CustomerResponseDto updateCustomerById(Long id, CustomerRequestDto userRequestDto);
+    CustomerUpdateResponseDto updateCustomerById(Long id, CustomerUpdateRequestDto userRequestDto);
     List<Customer> getCustomersForUnity();
 }
