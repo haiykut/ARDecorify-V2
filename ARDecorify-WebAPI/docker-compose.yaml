@@ -1,26 +1,29 @@
 version: '3'
 services:
-  app:
-    build: .
+  ardecorify:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ardecorify-v2:${TAG:-latest}
     ports:
-      #for spring boot instances.
       - "8080:8080"
-      - "8081:8080"
-      - "8082:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ardecorify
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: test123
     depends_on:
-      #create database in the container below.
       - postgres
 
   postgres:
     container_name: ardecorify-db
-    image: postgres:latest
+    image: postgres:16
     ports:
-      - "5434:5432"
+      - "${PGPORT:-5432}:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test123
       POSTGRES_DB: ardecorify
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
